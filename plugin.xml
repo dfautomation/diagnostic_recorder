@@ -1,0 +1,12 @@
+<library path="lib/libdiagnostic_recorder">
+  <class name="diagnostic_recorder/GenericAnalyzerRecorder" type="diagnostic_recorder::GenericAnalyzerRecorder" base_class_type="diagnostic_aggregator::Analyzer">
+    <description>
+      GenericAnalyzerRecorder inherits GenericAnalyzer, the default diagnostic analyzer. It also records to database.
+    </description>
+  </class>
+  <class name="diagnostic_recorder/AnalyzerRecorderGroup" type="diagnostic_recorder::AnalyzerRecorderGroup" base_class_type="diagnostic_aggregator::Analyzer">
+    <description>
+      AnalyzerGroupRecorder inherits AnalyzerGroup, a way of grouping diagnostic analyzers. It also records to database.
+    </description>
+  </class>
+</library>

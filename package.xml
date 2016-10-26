@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package>
+  <name>diagnostic_recorder</name>
+  <version>0.0.0</version>
+  <description>
+    Provides diagnostic analyzers with built-in recorders.
+  </description>
+  <author email="patrick-chin@dfautomation.com">Patrick Chin</author>
+  <maintainer email="patrick-chin@dfautomation.com">Patrick Chin</maintainer>
+  <license>BSD</license>
+  <url type="repository">http://github.com/dfautomation/diagnostic_recorder</url>
+  <url type="bugtracker">http://github.com/dfautomation/diagnostic_recorder/issues</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>diagnostic_aggregator</build_depend>
+  <build_depend>mongodb</build_depend>
+  <build_depend>pluginlib</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>roslint</build_depend>
+
+  <run_depend>diagnostic_aggregator</run_depend>
+  <run_depend>mongodb</run_depend>
+  <run_depend>pluginlib</run_depend>
+  <run_depend>roscpp</run_depend>
+
+  <export>
+    <diagnostic_aggregator plugin="${prefix}/plugin.xml"/>
+  </export>
+</package>
