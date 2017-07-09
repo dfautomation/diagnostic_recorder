@@ -34,28 +34,38 @@
  * Author: Patrick Chin
  *********************************************************************/
 
-#ifndef DIAGNOSTIC_RECORDER_BASE_RECORDER_H
-#define DIAGNOSTIC_RECORDER_BASE_RECORDER_H
+#ifndef DIAGNOSTIC_RECORDER_MONGODB_STORAGE_H
+#define DIAGNOSTIC_RECORDER_MONGODB_STORAGE_H
 
-#include <boost/shared_ptr.hpp>
+#include <mongo/client/dbclient.h>
 
-#include <diagnostic_msgs/DiagnosticStatus.h>
 #include <diagnostic_recorder/storage.h>
-#include <ros/ros.h>
 
 namespace diagnostic_recorder
 {
 
-class BaseRecorder
+class MongodbStorage: public Storage
 {
 public:
-  virtual bool init(const std::string base_path, const ros::NodeHandle &n);
+  MongodbStorage(const std::string& url);
+  virtual ~MongodbStorage();
+
   virtual void record(const std::vector<boost::shared_ptr<diagnostic_msgs::DiagnosticStatus> >& diagnostics);
 
+  static bool matchUrl(const std::string& url);
+
 private:
-  std::vector<boost::shared_ptr<Storage> > storages_;
+  boost::shared_ptr<mongo::DBClientConnection> conn_;
+  std::string db_host_;
+  std::string db_user_;
+  std::string db_password_;
+  std::string db_name_;
+  std::string collection_name_;
+  int expire_after_;
+
+  static const std::string protocol_;
 };
 
 }  // namespace diagnostic_recorder
 
-#endif  // DIAGNOSTIC_RECORDER_BASE_RECORDER_H
+#endif  // DIAGNOSTIC_RECORDER_MONGODB_STORAGE_H

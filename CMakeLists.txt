@@ -3,6 +3,9 @@ project(diagnostic_recorder)
 
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/" ${CMAKE_MODULE_PATH})
 
+find_package(Boost REQUIRED COMPONENTS
+  filesystem)
+
 find_package(catkin REQUIRED COMPONENTS
   diagnostic_aggregator
   pluginlib
@@ -14,20 +17,22 @@ catkin_package(
   INCLUDE_DIRS include
   LIBRARIES diagnostic_recorder
   CATKIN_DEPENDS diagnostic_aggregator pluginlib
-  DEPENDS MongoDB)
+  DEPENDS Boost MongoDB)
 
 
 ###########
 ## Build ##
 ###########
 
-include_directories(include ${catkin_INCLUDE_DIRS} ${MongoDB_INCLUDE_DIR})
+include_directories(include ${Boost_INCLUDE_DIR} ${catkin_INCLUDE_DIRS} ${MongoDB_INCLUDE_DIR})
 
 add_library(diagnostic_recorder
   src/analyzer_recorder_group.cpp
   src/base_recorder.cpp
-  src/generic_analyzer_recorder.cpp)
-target_link_libraries(diagnostic_recorder ${catkin_LIBRARIES} ${MongoDB_LIBRARIES})
+  src/generic_analyzer_recorder.cpp
+  src/storages/filesystem_storage.cpp
+  src/storages/mongodb_storage.cpp)
+target_link_libraries(diagnostic_recorder ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${MongoDB_LIBRARIES})
 
 
 #############

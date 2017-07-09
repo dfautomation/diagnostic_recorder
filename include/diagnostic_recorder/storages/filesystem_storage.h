@@ -34,28 +34,35 @@
  * Author: Patrick Chin
  *********************************************************************/
 
-#ifndef DIAGNOSTIC_RECORDER_BASE_RECORDER_H
-#define DIAGNOSTIC_RECORDER_BASE_RECORDER_H
+#ifndef DIAGNOSTIC_RECORDER_FILESYSTEM_STORAGE_H
+#define DIAGNOSTIC_RECORDER_FILESYSTEM_STORAGE_H
 
-#include <boost/shared_ptr.hpp>
+#include <fstream>
 
-#include <diagnostic_msgs/DiagnosticStatus.h>
 #include <diagnostic_recorder/storage.h>
-#include <ros/ros.h>
 
 namespace diagnostic_recorder
 {
 
-class BaseRecorder
+class FilesystemStorage
 {
 public:
-  virtual bool init(const std::string base_path, const ros::NodeHandle &n);
+  FilesystemStorage(const std::string& url);
+  virtual ~FilesystemStorage();
+
   virtual void record(const std::vector<boost::shared_ptr<diagnostic_msgs::DiagnosticStatus> >& diagnostics);
 
+  static bool matchUrl(const std::string& url);
+
 private:
-  std::vector<boost::shared_ptr<Storage> > storages_;
+  std::string folder_;
+  std::string filename_;
+  std::ofstream ofs_;
+  bool write_header_;
+
+  static const std::string protocol_;
 };
 
 }  // namespace diagnostic_recorder
 
-#endif  // DIAGNOSTIC_RECORDER_BASE_RECORDER_H
+#endif  // DIAGNOSTIC_RECORDER_FILESYSTEM_STORAGE_H
