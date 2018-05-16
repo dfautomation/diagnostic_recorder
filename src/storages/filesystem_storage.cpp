@@ -39,6 +39,7 @@
 #include <boost/filesystem.hpp>
 #include <cstdlib>
 #include <ctime>
+#include <sstream>
 
 namespace diagnostic_recorder
 {
@@ -63,7 +64,6 @@ FilesystemStorage::FilesystemStorage(const std::string& url)
     ROS_ERROR("FilesystemStorage: Failed to create the folder specified in storage URL.");
     folder_.clear();
   }
-  write_header_ = false;
 }
 
 FilesystemStorage::~FilesystemStorage()
@@ -93,7 +93,6 @@ void FilesystemStorage::record(const std::vector<boost::shared_ptr<diagnostic_ms
     std::string path = (boost::filesystem::path(folder_) / filename).string();
     ofs_.open(path.c_str(), std::ios_base::app);
     filename_ = filename;
-    write_header_ = ofs_.tellp() == 0;
   }
 
   strftime(buffer, 30, "%Y-%m-%d %H:%M:%S", localtime(&now));
@@ -113,20 +112,22 @@ void FilesystemStorage::record(const std::vector<boost::shared_ptr<diagnostic_ms
     }
   }
 
-  if (values.size() < 240)
+  std::ostringstream oss;
+  oss << "\"Timestamp";
+  for (std::vector<std::string>::iterator st = keys.begin(), st_end = keys.end(); st != st_end; ++st)
   {
-    return;
+    oss << "\",\"" << *st;
   }
+  oss << '"' << std::endl;
+  std::string header = oss.str();
 
-  if (write_header_)
+  if (header_ != header)
   {
-    ofs_ << "\"Timestamp";
-    for (std::vector<std::string>::iterator st = keys.begin(), st_end = keys.end(); st != st_end; ++st)
-    {
-      ofs_ << "\",\"" << *st;
+    if (ofs_.tellp() != 0) {
+      ofs_ << std::endl << std::endl;
     }
-    ofs_ << '"' << std::endl;
-    write_header_ = false;
+    ofs_ << header;
+    header_ = header;
   }
 
   ofs_ << '"' << timestamp;

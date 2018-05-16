@@ -58,7 +58,7 @@ private:
   std::string folder_;
   std::string filename_;
   std::ofstream ofs_;
-  bool write_header_;
+  std::string header_;
 
   static const std::string protocol_;
 };
