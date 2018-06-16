@@ -5,8 +5,8 @@
   <description>
     Provides diagnostic analyzers with built-in recorders.
   </description>
-  <author email="patrick-chin@dfautomation.com">Patrick Chin</author>
-  <maintainer email="patrick-chin@dfautomation.com">Patrick Chin</maintainer>
+  <author email="patrick@dfautomation.com">Patrick Chin</author>
+  <maintainer email="patrick@dfautomation.com">Patrick Chin</maintainer>
   <license>BSD</license>
   <url type="repository">http://github.com/dfautomation/diagnostic_recorder</url>
   <url type="bugtracker">http://github.com/dfautomation/diagnostic_recorder/issues</url>
