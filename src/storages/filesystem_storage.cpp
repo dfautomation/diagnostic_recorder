@@ -49,9 +49,11 @@ const std::string FilesystemStorage::protocol_ = "file://";
 FilesystemStorage::FilesystemStorage(const std::string& url)
 {
   folder_ = url.substr(protocol_.length());
-  if (folder_[0] == '~') {
+  if (folder_[0] == '~')
+  {
     const char* home = getenv("HOME");
-    if (home == NULL) {
+    if (home == NULL)
+    {
       ROS_ERROR("FilesystemStorage: Path cannot begin with ~ because the HOME environment variable is not set.");
       folder_.clear();
       return;
@@ -121,12 +123,14 @@ void FilesystemStorage::record(const std::vector<boost::shared_ptr<diagnostic_ms
   oss << '"' << std::endl;
   std::string header = oss.str();
 
-  if (header_ != header)
+  if (ofs_.tellp() == 0)
   {
-    if (ofs_.tellp() != 0) {
-      ofs_ << std::endl << std::endl;
-    }
     ofs_ << header;
+    header_ = header;
+  }
+  else if (header_ != header)
+  {
+    ofs_ << std::endl << std::endl << header;
     header_ = header;
   }
 
