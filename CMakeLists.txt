@@ -9,8 +9,7 @@ find_package(Boost REQUIRED COMPONENTS
 find_package(catkin REQUIRED COMPONENTS
   diagnostic_aggregator
   pluginlib
-  roscpp
-  roslint)
+  roscpp)
 find_package(MongoDB)
 
 catkin_package(
@@ -56,6 +55,7 @@ install(DIRECTORY include/${PROJECT_NAME}/
 #############
 
 if (CATKIN_ENABLE_TESTING)
+  find_package(roslint REQUIRED)
   set(ROSLINT_CPP_OPTS "--filter=-build/include_what_you_use,-runtime/references,-whitespace/braces,-whitespace/line_length")
   roslint_cpp()
   roslint_add_test()

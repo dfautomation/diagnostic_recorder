@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package>
+<package format="2">
   <name>diagnostic_recorder</name>
   <version>0.0.0</version>
   <description>
@@ -13,16 +13,13 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <build_depend>diagnostic_aggregator</build_depend>
-  <build_depend>mongodb-dev</build_depend>
-  <build_depend>pluginlib</build_depend>
-  <build_depend>roscpp</build_depend>
-  <build_depend>roslint</build_depend>
+  <depend>boost</depend>
+  <depend>diagnostic_aggregator</depend>
+  <depend>mongodb-dev</depend>
+  <depend>pluginlib</depend>
+  <depend>roscpp</depend>
 
-  <run_depend>diagnostic_aggregator</run_depend>
-  <run_depend>mongodb-dev</run_depend>
-  <run_depend>pluginlib</run_depend>
-  <run_depend>roscpp</run_depend>
+  <test_depend>roslint</test_depend>
 
   <export>
     <diagnostic_aggregator plugin="${prefix}/plugin.xml"/>
