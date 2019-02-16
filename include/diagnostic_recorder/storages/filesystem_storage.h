@@ -34,8 +34,8 @@
  * Author: Patrick Chin
  *********************************************************************/
 
-#ifndef DIAGNOSTIC_RECORDER_FILESYSTEM_STORAGE_H
-#define DIAGNOSTIC_RECORDER_FILESYSTEM_STORAGE_H
+#ifndef DIAGNOSTIC_RECORDER_STORAGES_FILESYSTEM_STORAGE_H
+#define DIAGNOSTIC_RECORDER_STORAGES_FILESYSTEM_STORAGE_H
 
 #include <fstream>
 
@@ -47,7 +47,7 @@ namespace diagnostic_recorder
 class FilesystemStorage
 {
 public:
-  FilesystemStorage(const std::string& url);
+  explicit FilesystemStorage(const std::string& url);
   virtual ~FilesystemStorage();
 
   virtual void record(const std::vector<boost::shared_ptr<diagnostic_msgs::DiagnosticStatus> >& diagnostics);
@@ -65,4 +65,4 @@ private:
 
 }  // namespace diagnostic_recorder
 
-#endif  // DIAGNOSTIC_RECORDER_FILESYSTEM_STORAGE_H
+#endif  // DIAGNOSTIC_RECORDER_STORAGES_FILESYSTEM_STORAGE_H

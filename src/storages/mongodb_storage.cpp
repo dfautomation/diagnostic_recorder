@@ -175,4 +175,4 @@ bool MongodbStorage::matchUrl(const std::string& url)
   return url.substr(0, protocol_.length()) == protocol_;
 }
 
-}  // diagnostic_recorder
+}  // namespace diagnostic_recorder

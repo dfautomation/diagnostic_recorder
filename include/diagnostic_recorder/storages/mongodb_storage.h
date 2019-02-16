@@ -34,8 +34,8 @@
  * Author: Patrick Chin
  *********************************************************************/
 
-#ifndef DIAGNOSTIC_RECORDER_MONGODB_STORAGE_H
-#define DIAGNOSTIC_RECORDER_MONGODB_STORAGE_H
+#ifndef DIAGNOSTIC_RECORDER_STORAGES_MONGODB_STORAGE_H
+#define DIAGNOSTIC_RECORDER_STORAGES_MONGODB_STORAGE_H
 
 #include <mongo/client/dbclient.h>
 
@@ -47,7 +47,7 @@ namespace diagnostic_recorder
 class MongodbStorage: public Storage
 {
 public:
-  MongodbStorage(const std::string& url);
+  explicit MongodbStorage(const std::string& url);
   virtual ~MongodbStorage();
 
   virtual void record(const std::vector<boost::shared_ptr<diagnostic_msgs::DiagnosticStatus> >& diagnostics);
@@ -68,4 +68,4 @@ private:
 
 }  // namespace diagnostic_recorder
 
-#endif  // DIAGNOSTIC_RECORDER_MONGODB_STORAGE_H
+#endif  // DIAGNOSTIC_RECORDER_STORAGES_MONGODB_STORAGE_H
