@@ -124,8 +124,11 @@ MongodbStorage::MongodbStorage(const std::string& url)
     return;
   }
 
-  conn_->ensureIndex(db_name_ + "." + collection_name_, BSON("timestamp" << 1),
-                     true, "",  true, false, -1, expire_after_);
+  mongo::IndexSpec spec;
+  spec.addKey("timestamp");
+  spec.unique();
+  spec.expireAfterSeconds(expire_after_);
+  conn_->createIndex(db_name_ + "." + collection_name_, spec);
 }
 
 MongodbStorage::~MongodbStorage()

@@ -15,7 +15,7 @@
 
   <depend>boost</depend>
   <depend>diagnostic_aggregator</depend>
-  <depend>mongodb-dev</depend>
+  <depend>libmongoclient-dev</depend>
   <depend>pluginlib</depend>
   <depend>roscpp</depend>
 
