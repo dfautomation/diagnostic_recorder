@@ -2,8 +2,8 @@
 Changelog for package diagnostic_recorder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.0 (2020-10-15)
+------------------
 * Fix deprecated function in libmongoclient.
 * Contributors: Patrick Chin
 
