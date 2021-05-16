@@ -125,6 +125,7 @@ void FilesystemStorage::record(const std::vector<boost::shared_ptr<diagnostic_ms
 
   if (ofs_.tellp() == 0)
   {
+    ofs_ << "\ufeff";  // Unicode BOM
     ofs_ << header;
     header_ = header;
   }
