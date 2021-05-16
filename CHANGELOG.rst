@@ -2,6 +2,11 @@
 Changelog for package diagnostic_recorder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.2.1 (2021-05-17)
+------------------
+* Insert Unicode BOM in the output csv file.
+* Contributors: Patrick Chin
+
 0.2.0 (2020-10-15)
 ------------------
 * Fix deprecated function in libmongoclient.
