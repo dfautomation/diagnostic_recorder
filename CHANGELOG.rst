@@ -2,6 +2,11 @@
 Changelog for package diagnostic_recorder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.1.1 (2021-05-17)
+------------------
+* Insert Unicode BOM in the output csv file.
+* Contributors: Patrick Chin
+
 0.1.0 (2019-02-17)
 ------------------
 * Upgrade the format of package.xml to v2.
