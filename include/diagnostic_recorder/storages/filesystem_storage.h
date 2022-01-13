@@ -37,6 +37,7 @@
 #ifndef DIAGNOSTIC_RECORDER_STORAGES_FILESYSTEM_STORAGE_H
 #define DIAGNOSTIC_RECORDER_STORAGES_FILESYSTEM_STORAGE_H
 
+#include <boost/algorithm/string.hpp>
 #include <fstream>
 
 #include <diagnostic_recorder/storage.h>
@@ -53,6 +54,13 @@ public:
   virtual void record(const std::vector<boost::shared_ptr<diagnostic_msgs::DiagnosticStatus> >& diagnostics);
 
   static bool matchUrl(const std::string& url);
+
+private:
+  std::string csvEscape(std::string str)
+  {
+    boost::replace_all(str, "\"", "\"\"");
+    return str;
+  }
 
 private:
   std::string folder_;

@@ -118,7 +118,7 @@ void FilesystemStorage::record(const std::vector<boost::shared_ptr<diagnostic_ms
   oss << "\"Timestamp";
   for (std::vector<std::string>::iterator st = keys.begin(), st_end = keys.end(); st != st_end; ++st)
   {
-    oss << "\",\"" << *st;
+    oss << "\",\"" << csvEscape(*st);
   }
   oss << '"' << std::endl;
   std::string header = oss.str();
@@ -138,7 +138,7 @@ void FilesystemStorage::record(const std::vector<boost::shared_ptr<diagnostic_ms
   ofs_ << '"' << timestamp;
   for (std::vector<std::string>::iterator st = values.begin(), st_end = values.end(); st != st_end; ++st)
   {
-    ofs_ << "\",\"" << *st;
+    ofs_ << "\",\"" << csvEscape(*st);
   }
   ofs_ << '"' << std::endl;
   ofs_.flush();
