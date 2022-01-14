@@ -2,6 +2,11 @@
 Changelog for package diagnostic_recorder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.2.2 (2022-01-14)
+------------------
+* Escape double quotes in csv file.
+* Contributors: Patrick Chin
+
 0.2.1 (2021-05-17)
 ------------------
 * Insert Unicode BOM in the output csv file.
